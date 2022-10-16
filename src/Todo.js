@@ -13,6 +13,12 @@ const Todo = () => {
 
   const nextId = useRef(0);
 
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      window.location.href = "/";
+    }
+  });
+
   const getTodos = () => {
     axios
       .get("https://pre-onboarding-selection-task.shop/todos", {
