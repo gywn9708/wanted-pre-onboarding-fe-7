@@ -5,16 +5,15 @@ import "./css/todo.css";
 
 const TodoListItem = ({
   todo,
-
-  onUpdate,
-  onRemove,
+  updateTodo,
+  deleteTodo,
   onChecked,
   todoList,
   setTodoList,
 }) => {
   const [edited, setEdited] = useState(false);
   const [newText, setNewText] = useState(todo.todo);
-  const [aa, setAa] = useState(todo.isCompleted);
+
   const editInputRef = useRef(null);
 
   const onClickEditButton = () => {
@@ -35,7 +34,7 @@ const TodoListItem = ({
     setTodoList(nextTodoList);
 
     setEdited(false);
-    onUpdate(newText, todo.id, todo.isCompleted);
+    updateTodo(newText, todo.id, todo.isCompleted);
   };
 
   useEffect(() => {
@@ -96,7 +95,7 @@ const TodoListItem = ({
           )
         ) : null}
 
-        <button className="remove" onClick={() => onRemove(todo.id)}>
+        <button className="remove" onClick={() => deleteTodo(todo.id)}>
           <BsFillTrashFill />
         </button>
       </ul>

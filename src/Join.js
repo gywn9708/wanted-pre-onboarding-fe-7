@@ -78,11 +78,7 @@ const Join = () => {
               className="mb-3"
             >
               <Form.Control type="email" onChange={onChangeEmail} />
-              {email.length > 0 && (
-                <span className={`message ${isEmail ? "success" : "error"}`}>
-                  {emailMessage}
-                </span>
-              )}
+              {email.length > 0 && <span>{emailMessage}</span>}
             </FloatingLabel>
           </Col>
           <Col sm={12}>
@@ -92,11 +88,7 @@ const Join = () => {
               className="mb-3"
             >
               <Form.Control type="password" onChange={onChangePassword} />
-              {password.length > 0 && (
-                <span className={`message ${isPassword ? "success" : "error"}`}>
-                  {passwordMessage}
-                </span>
-              )}
+              {password.length > 0 && <span>{passwordMessage}</span>}
             </FloatingLabel>
           </Col>
           <Col sm={12}>

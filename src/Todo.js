@@ -13,23 +13,27 @@ const Todo = () => {
 
   const nextId = useRef(0);
 
-  const getTodo = () => {
+  const getTodos = () => {
     axios
       .get("https://pre-onboarding-selection-task.shop/todos", {
         headers: { Authorization: "Bearer " + localStorage.getItem("token") },
       })
       .then((result) => {
-        console.log("result:", result);
-        setTodoList(result.data);
-        setTodos(result.data);
+        if (result.status === 200) {
+          // console.log("getTodos", result);
+          setTodoList(result.data);
+          setTodos(result.data);
+        } else {
+          alert("잘못된 요청입니다.");
+        }
       });
   };
 
   useEffect(() => {
-    getTodo();
+    getTodos();
   }, []);
 
-  const onInsert = useCallback(
+  const createTodo = useCallback(
     (text) => {
       const todo = {
         id: nextId.current,
@@ -46,25 +50,21 @@ const Todo = () => {
         mode: "cors",
       })
         .then((response) => {
-          getTodo();
+          if (response.status === 201) {
+            // console.log("createTodo", response);
+            getTodos();
+          } else {
+            alert("잘못된 요청입니다.");
+          }
         })
-        .then((result) => {
-          console.log(result);
-          // console.log(todos);
-          // setTodos(result);
-          // setId(id + 1);
-          // setTodos(todos.concat(todos));
-        })
-        .catch((error) => {
-          console.log(error);
+        .catch((e) => {
+          console.log(e);
         });
     },
     [todos, id]
   );
 
-  const onUpdate = useCallback((text, id, isCompleted) => {
-    console.log(id);
-
+  const updateTodo = useCallback((text, id, isCompleted) => {
     fetch(`https://pre-onboarding-selection-task.shop/todos/${id}`, {
       method: "put",
       headers: {
@@ -74,16 +74,19 @@ const Todo = () => {
       body: JSON.stringify({ todo: text, isCompleted: isCompleted }),
     })
       .then((response) => {
-        console.log("is", isCompleted);
-        // setTodos(response);
-        getTodo();
+        if (response.status === 200) {
+          // console.log("isCompleted", isCompleted);
+          getTodos();
+        } else {
+          alert("잘못된 요청입니다.");
+        }
       })
       .catch((e) => {
         console.log(e);
       });
   });
 
-  const onRemove = useCallback((id) => {
+  const deleteTodo = useCallback((id) => {
     axios({
       method: "delete",
       url: `https://pre-onboarding-selection-task.shop/todos/${id}`,
@@ -91,7 +94,12 @@ const Todo = () => {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
     }).then((response) => {
-      getTodo();
+      if (response.status === 204) {
+        // console.log("deleteTodo", response);
+        getTodos();
+      } else {
+        alert("잘못된 요청입니다.");
+      }
     });
   });
 
@@ -103,37 +111,14 @@ const Todo = () => {
           : todo;
       })
     );
-
-    onUpdate(text, id, !isCompleted);
+    updateTodo(text, id, !isCompleted);
   };
-  // const onChecked = useCallback(
-  //   (id) => {
-  //     const todo = todos
-  //       .filter((t) => t.id === id)
-  //       .map((t) => ({ ...t, checked: !t.checked }));
-
-  //     console.log(todo[0]);
-
-  //     axios({
-  //       method: "put",
-  //       url: `https://pre-onboarding-selection-task.shop/todos/${id}`,
-  //       data: todo[0],
-  //       headers: {
-  //         Authorization: "Bearer " + localStorage.getItem("token"),
-  //         "Content-Type": "application/json",
-  //       },
-  //     }).then((response) => {
-  //       getTodo();
-  //     });
-  //   },
-  //   [todos]
-  // );
 
   return (
     <Container>
       <TodoTemplate>
         <TodoInsert
-          onInsert={onInsert}
+          createTodo={createTodo}
           todoList={todoList}
           setTodoList={setTodoList}
         />
@@ -141,8 +126,8 @@ const Todo = () => {
           todoList={todoList}
           setTodoList={setTodoList}
           todos={todos}
-          onUpdate={onUpdate}
-          onRemove={onRemove}
+          updateTodo={updateTodo}
+          deleteTodo={deleteTodo}
           onChecked={onChecked}
         />
       </TodoTemplate>

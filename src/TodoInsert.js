@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 
-const TodoInsert = ({ onInsert, todoList, setTodoList }) => {
+const TodoInsert = ({ createTodo, todoList, setTodoList }) => {
   const [value, setValue] = useState("");
 
   const onChange = useCallback((e) => {
@@ -13,7 +13,7 @@ const TodoInsert = ({ onInsert, todoList, setTodoList }) => {
 
   const handleSubmit = useCallback(
     (e) => {
-      onInsert(value);
+      createTodo(value);
       setValue("");
 
       const nextTodoList = todoList.concat({
@@ -26,12 +26,8 @@ const TodoInsert = ({ onInsert, todoList, setTodoList }) => {
       e.preventDefault();
       console.log(nextTodoList);
     },
-    [onInsert, value]
+    [createTodo, value]
   );
-
-  // useEffect(() => {
-  //   ref.current.focus();
-  // }, []);
 
   return (
     <Container>

@@ -4,8 +4,8 @@ import Container from "react-bootstrap/Container";
 
 const TodoList = ({
   todos,
-  onUpdate,
-  onRemove,
+  updateTodo,
+  deleteTodo,
   onChecked,
   todoList,
   setTodoList,
@@ -16,8 +16,8 @@ const TodoList = ({
         <TodoListItem
           todo={todo}
           key={todo.id}
-          onUpdate={onUpdate}
-          onRemove={onRemove}
+          updateTodo={updateTodo}
+          deleteTodo={deleteTodo}
           onChecked={onChecked}
           todoList={todoList}
           setTodoList={setTodoList}
