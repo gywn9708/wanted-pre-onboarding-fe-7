@@ -12,4 +12,4 @@ npm start
 http://localhost:3000
 
 # 배포 링크(데모영상 대체)
-https://634bc3a8f93621541275bad7--todolist-wanted.netlify.app/
+https://todolist-wanted.netlify.app/
