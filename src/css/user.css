@@ -1,0 +1,9 @@
+.mb-3 {
+  width: 400px;
+}
+
+.userContainer {
+  display: flex;
+  justify-content: center;
+  padding-top: 15%;
+}
