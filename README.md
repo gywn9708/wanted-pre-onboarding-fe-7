@@ -1,11 +1,6 @@
-# 원티드 프리온보딩 프론트엔드 - 선발과제
+# 원티드 프리온보딩 프론트엔드 - 선발 과제
 
-# 1. 깃클론받기
-```
-https://github.com/gywn9708/wanted-pre-onboarding-fe-7.git
-```
-
-# 2. 프로젝트 실행하기
+# 프로젝트 실행 방법
 ```
 npm install
 npm start
