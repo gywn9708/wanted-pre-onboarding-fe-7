@@ -1,12 +1,13 @@
 # wanted-pre-onboarding-fe-7
 
 # 1. 깃클론받기
+```
 https://github.com/gywn9708/wanted-pre-onboarding-fe-7.git
+```
 
 # 2. 프로젝트 실행하기
 ```
 npm install
-
 npm start
 ```
 
