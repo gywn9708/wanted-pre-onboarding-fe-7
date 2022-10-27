@@ -42,6 +42,7 @@ https://todolist-wanted.netlify.app/
 ● 이메일, 비밀번호 유효성 검사
 ```
 // Join.js
+
 // 이메일, 비밀번호
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
@@ -78,7 +79,21 @@ const onChangePassword = useCallback((e) => {
     }
   }, []);
 ```
-  
+
+● 아이디, 비밀번호 회원가입 조건 충족시 회원가입 버튼 활성화
+// Join.js
+
+```
+<Button
+     style={{ width: "400px" }}
+     type="submit"
+     variant="primary"
+     disabled={!(isEmail && isPassword)}
+     onClick={onHandleSubmit}
+>
+     회원가입
+</Button>
+```
 
 
 
