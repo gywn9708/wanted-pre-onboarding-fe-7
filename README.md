@@ -81,6 +81,7 @@ const onChangePassword = useCallback((e) => {
 ```
 </br>
 
+
 ● 아이디, 비밀번호 회원가입 조건 충족시 회원가입 버튼 활성화
 ```
 // Join.js
@@ -96,6 +97,8 @@ const onChangePassword = useCallback((e) => {
 </Button>
 ```
 </br>
+
+
 ● 회원가입시 아이디, 비밀번호 확인 및 토근 발급 후 로그인 페이지롱 이동
 ```
 // Join.js
@@ -118,6 +121,8 @@ const onHandleSubmit = (e) => {
       });
   };
 ```
+</br>
+
 
 [JSX]
 ```
