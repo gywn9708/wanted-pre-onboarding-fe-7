@@ -268,6 +268,11 @@ const onHandleSubmit = (e) => {
     });
   });
  ```
+ 1. create
+getTodo 함수에는 axios를 이용하여 해당 계정에 저장되어있는 투두 리스트를 받아 setTodos 
+ 3. read
+ 4. update
+ 5. delete
  </br>
  
  
