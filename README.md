@@ -165,7 +165,7 @@ const onHandleSubmit = (e) => {
       });
   };
 ```
-</br>
+
 
 [JSX]
 ```
