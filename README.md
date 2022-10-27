@@ -80,10 +80,11 @@ const onChangePassword = useCallback((e) => {
   }, []);
 ```
 </br>
+
 ● 아이디, 비밀번호 회원가입 조건 충족시 회원가입 버튼 활성화
+```
 // Join.js
 
-```
 <Button
      style={{ width: "400px" }}
      type="submit"
@@ -94,6 +95,85 @@ const onChangePassword = useCallback((e) => {
      회원가입
 </Button>
 ```
+</br>
+● 회원가입시 아이디, 비밀번호 확인 및 토근 발급 후 로그인 페이지롱 이동
+```
+// Join.js
+
+const onHandleSubmit = (e) => {
+    e.preventDefault();
+    fetch("https://pre-onboarding-selection-task.shop/auth/signup", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    })
+      .then((response) => response.json())
+      .then(() => {
+        window.location.href = "/";
+      });
+  };
+```
+[JSX]
+```
+<Button
+    style={{ width: "400px" }}
+    type="submit"
+    variant="primary"
+    disabled={!(isEmail && isPassword)}
+    onClick={onHandleSubmit}
+>
+    회원가입
+</Button>
+```
+
+
+</br>
+● 로그인시 아이디, 비밀번호 확인 및 토근 발급
+```
+//Login.js
+
+const onHandleSubmit = (e) => {
+    e.preventDefault();
+    fetch("https://pre-onboarding-selection-task.shop/auth/signin", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        if (response) {
+          localStorage.setItem("token", response.access_token);
+          window.location.href = "/todo";
+        } else {
+          alert("아이디 또는 비밀번호를 확인해주세요.");
+        }
+      });
+  };
+```
+JSX
+```
+<Button
+    style={{ width: "400px" }}
+    type="submit"
+    variant="primary"
+    onClick={onHandleSubmit}
+>
+    로그인
+</Button>
+```
+
+
+
 
 
 
