@@ -123,7 +123,6 @@ const onHandleSubmit = (e) => {
 ```
 </br>
 
-
 [JSX]
 ```
 <Button
@@ -166,8 +165,7 @@ const onHandleSubmit = (e) => {
 ```
 </br>
 
-
-JSX
+[JSX]
 ```
 <Button
     style={{ width: "400px" }}
